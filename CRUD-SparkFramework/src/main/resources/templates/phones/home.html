@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phones Home</title>
+    <script th:src="${host}+'/app.js'"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="container-fluid">
+        <div class="conatiner">
+          <p th:text="${name}"></p>
+          <a href="/phones/new">Agregar un nuevo telefono</a>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Mark</th>
+                <th>Memory</th>
+                <th>Model</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="phone: ${phones}">
+                <td th:text="${phone.id}"></td>
+                <td th:text="${phone.marca}"></td>
+                <td th:text="${phone.modelo}"></td>
+                <td th:text="${phone.memoria}"></td>
+                <td>
+                  <a th:href="${host}+'/phones/' + ${phone.id} + '/edit' "
+                    >Editar</a
+                  >
+                  <a th:href="${host} + '/phones/' + ${phone.id} ">Ver</a>
+                  <a
+                    href="#"
+                    onclick=""
+                    th:attr="onclick=${'deleteRegister(\''+phone.id+'\')'}"
+                    >Eliminar</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
